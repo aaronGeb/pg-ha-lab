@@ -19,10 +19,10 @@ make clean     # tear down and delete volumes
 
 | Endpoint             | URL                                                  |
 | -------------------- | ---------------------------------------------------- |
-| Primary (read/write) | `localhost:5000` (user `app`, db `ledger`)           |
-| Replicas (read-only) | `localhost:5001`                                     |
+| Primary (read/write) | `localhost:15000` (user `app`, db `ledger`)           |
+| Replicas (read-only) | `localhost:15001`                                     |
 | Analytics DB         | `localhost:5433` (user `postgres`, db `analytics`)   |
-| HAProxy stats        | http://localhost:7000                                |
+| HAProxy stats        | http://localhost:17000                                |
 | Prometheus           | http://localhost:9090                                |
 | Grafana              | http://localhost:3000 (dashboard "Postgres HA Lab")  |
 | Patroni REST         | `localhost:8008` / `8009` / `8010` (pg1 / pg2 / pg3) |
