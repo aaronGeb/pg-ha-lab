@@ -4,6 +4,29 @@ A Dockerized PostgreSQL 16 cluster with automatic failover (Patroni + etcd), a s
 
 Workload: a double-entry ledger (every transaction is a balanced debit + credit pair), the kind of data where losing an acknowledged commit is unacceptable.
 
+# Quick start
+
+Requires Docker with Compose v2, Python 3.10+, and make.
+
+```
+make up        # builds images, starts everything, waits until the cluster is healthy
+make status    # who is leader / sync standby / replica
+make test      # kill the primary under load and verify
+make switchover   # planned, graceful leader change
+make lag       # replication lag as seen by the primary
+make clean     # tear down and delete volumes
+```
+
+| Endpoint             | URL                                                  |
+| -------------------- | ---------------------------------------------------- |
+| Primary (read/write) | `localhost:5000` (user `app`, db `ledger`)           |
+| Replicas (read-only) | `localhost:5001`                                     |
+| Analytics DB         | `localhost:5433` (user `postgres`, db `analytics`)   |
+| HAProxy stats        | http://localhost:7000                                |
+| Prometheus           | http://localhost:9090                                |
+| Grafana              | http://localhost:3000 (dashboard "Postgres HA Lab")  |
+| Patroni REST         | `localhost:8008` / `8009` / `8010` (pg1 / pg2 / pg3) |
+
 # Architecture
 
 ```mermaid
